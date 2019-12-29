@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="pt-br">
+    <meta charset="utf-8">
+    <title>Clínica Veterinária</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#calendario").datepicker();
+        });
+    </script>
+    <script>
+        function cadastro() {
+            alert("Cadastrado com sucesso!")
+        }
+
+        function mCPF(cpf) {
+            cpf = cpf.replace(/\D/g, "")
+            cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+            cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+            cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+            return cpf
+        }
+
+        function fMasc(objeto, mascara) {
+            obj = objeto
+            masc = mascara
+            setTimeout("fMascEx()", 1)
+        }
+
+        function mNum(num) {
+            num = num.replace(/\D/g, "")
+            return num
+        }
+
+        function fMascEx() {
+            obj.value = masc(obj.value)
+        }
+
+        function mCEP(cep) {
+            cep = cep.replace(/\D/g, "")
+            cep = cep.replace(/^(\d{2})(\d)/, "$1.$2")
+            cep = cep.replace(/\.(\d{3})(\d)/, ".$1-$2")
+            return cep
+        }
+    </script>
+
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        
+        body {
+            background-color: grey;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .banner {
+            background-color: #000;
+            text-align: center;
+            color: #fff;
+            height: 158px;
+            background-size: cover;
+            background-image: url(./assets/images/dogs.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+        }
+        
+        .titlePage {
+            align-content: center;
+            justify-self: center;
+            font-size: -webkit-xxx-large;
+            font-family: 'Nunito', sans-serif;
+            padding-top: 45px;
+            margin: 0;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            width: 40%;
+            background-color: rgba(255, 255, 255, 0.735);
+            justify-self: center;
+            justify-content: center;
+            position: absolute;
+            left: 30%;
+            top: 30%;
+            border-radius: 10px;
+            height: 88%;
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .button {
+            height: 6%;
+            font-weight: bold;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            width: 40%;
+            background-color: rgb(184, 38, 2);
+            position: relative;
+            left: 30%;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+        }
+        
+        .card_title {
+            text-align: center;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        .container {
+            padding: 16px;
+            background-color: rgba(255, 255, 255, 0.735);
+        }
+        
+        input[type=text],
+        input[type=number],
+        input[type=date] {
+            width: 92%;
+            padding: 15px;
+            margin: 6px 22px 0;
+            display: inline-block;
+            border: none;
+            background: rgba(255, 255, 255, 0.735);
+        }
+        
+        input[type=text],
+         :focus input[type=number],
+         :focus input[type=date] :focus,
+        .sub {
+            margin: 6px 22px 0;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="banner">
+        <h1 class="titlePage">CLÍNICA VETERINÁRIA</h1>
+    </div>
+    <form>
+        <div class="row">
+            <div class="card">
+
+                <h3 class="card_title">CADASTRO</h3>
+                <div>
+                    <div>
+                        <label for="name" class="sub"><b>NOME</b></label>
+                        <input type="text" name="name" placeholder="nome do tutor">
+                    </div>
+                    <div>
+                        <label for="idade" class="sub"><b>IDADE</b></label>
+                        <input type="number" id="idade" name="idade" placeholder="anos">
+
+                        <label for="data_nascimento" class="sub"><b>NASCIMENTO</b></label>
+                        <input type="text" id="calendario" name="nascimento" placeholder="dd/mm/aaaa">
+                    </div>
+                    <div>
+                        <label for="endereço" class="sub"><b>ENDEREÇO</b></label>
+                        <input type="text" id="endereco" name="endereço" placeholder="Rua dos Bobos, 00">
+
+                        <label for="cep" class="sub"><b>CEP</b></label>
+                        <input type="text" id="cep" name="cep" placeholder="_____-___" maxlength="10" onkeydown="javascript:mCEP( this, mCEP );">
+                    </div>
+                    <div><label for="cpf" class="sub"><b>CPF</b></label>
+                        <input type="text" id="cpf" name="cpf" placeholder="___.___.___-__" maxlength="14" onkeydown="javascript: fMasc( this, mCPF );">
+                    </div>
+
+                </div>
+                <br>
+
+                <button onclick="cadastro()" class="button">CADASTRAR</button>
+
+
+            </div>
+        </div>
+    </form>
+</body>
+<footer>
+
+</footer>
+
+</html>
